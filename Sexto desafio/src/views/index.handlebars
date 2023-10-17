@@ -1,3 +1,31 @@
 <div>
-    <h1>Hola {{firstName}}! Que bueno verte </h1>
+    <h1>Lista de Productos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th> 
+                <th>Price</th>
+                <th>Thumbnail</th> 
+                <th>Code</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each productos}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{title}}</td>
+                    <td>{{description}}</td> 
+                    <td>{{price}}</td>
+                    <td>{{thumbnail}}</td> 
+                    <td>{{code}}</td>
+                    <td>{{stock}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
