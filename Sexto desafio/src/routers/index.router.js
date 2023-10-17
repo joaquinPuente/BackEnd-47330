@@ -42,7 +42,6 @@ router.post('/addProduct', async (req, res) => {
       await products.addProduct(title, description, price, thumbnail, code, stock);
       const productos = await products.getProducts();
       io.of('/realTimeProduct').emit('productos-actualizados', productos);
-
       res.redirect('/realTimeProduct'); 
   } catch (error) {
       console.error('Error al agregar producto', error);
@@ -67,7 +66,7 @@ router.post('/delProduct', async (req, res) => {
       const productos = await products.getProducts();
       io.of('/realTimeProduct').emit('productos-actualizados', productos);
       console.log(`ID: ${productId} fue eliminado correctamente.`);
-      res.redirect('/realTimeProduct'); // Redirige a la página de productos en tiempo real
+      res.redirect('/realTimeProduct');
   } catch (error) {
       console.error('Error al eliminar producto', error);
       res.status(500).send('Error al eliminar producto');
