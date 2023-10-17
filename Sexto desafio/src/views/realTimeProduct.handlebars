@@ -1,0 +1,95 @@
+<div>
+    <h1>Lista de Productos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Thumbnail</th>
+                <th>Código</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each productos}}
+                <tr data-product-id="{{id}}">
+                    <td>{{id}}</td>
+                    <td>{{title}}</td>
+                    <td>{{description}}</td>
+                    <td>{{price}}</td>
+                    <td>{{thumbnail}}</td>
+                    <td>{{code}}</td>
+                    <td>{{stock}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    <h1>Agregar Producto</h1>
+    <form action="/addProduct" method="post">
+    <label for="title">Título:</label>
+    <input type="text" id="title" name="title" value="Producto 7" required>
+
+    <label for="description">Descripción:</label>
+    <textarea id="description" name="description" rows="4" required>Descripción 7</textarea>
+
+    <label for="price">Precio:</label>
+    <input type="number" id="price" name="price" value="1" required>
+
+    <label for="thumbnail">URL de la Imagen:</label>
+    <input type="text" id="thumbnail" name="thumbnail" value="imagen7.jpg" required>
+
+    <label for="code">Código:</label>
+    <input type="text" id="code" name="code" value="abc117" required>
+
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" name="stock" value="15" required>
+
+    <button type="submit">Guardar Producto</button>
+    </form>
+</div>
+
+<div>
+    <h1>Actualizar producto</h1>
+    <form action="/updateProduct" method="post">
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" value="id" required>
+
+    <label for="title">Título:</label>
+    <input type="text" id="title" name="title" value="Producto 7" required>
+
+    <label for="description">Descripción:</label>
+    <textarea id="description" name="description" rows="4" required>Descripción 7</textarea>
+
+    <label for="price">Precio:</label>
+    <input type="number" id="price" name="price" value="1" required>
+
+    <label for="thumbnail">URL de la Imagen:</label>
+    <input type="text" id="thumbnail" name="thumbnail" value="imagen7.jpg" required>
+
+    <label for="code">Código:</label>
+    <input type="text" id="code" name="code" value="abc117" required>
+
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" name="stock" value="15" required>
+
+    <button type="submit">Actualizar Producto</button>
+    </form>
+</div>
+
+<div>
+    <h1>Borrar producto</h1>
+    <form action="/delProduct" method="post">
+    <label for="id">ID del Producto a Eliminar:</label>
+    <input type="number" id="id" name="id" required>
+    <button type="submit">Eliminar Producto</button>
+    </form>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

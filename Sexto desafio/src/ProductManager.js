@@ -47,7 +47,7 @@ class ProductManager {
         }
     }
 
-    async updateProductById(id, title, description, price, thumbnail, code, stock, category) {
+    async updateProductById(id, title, description, price, thumbnail, code, stock) {
         const products = await this.getProducts();
         const index = products.findIndex(product => product.id === id);
         if (index === -1) {
@@ -55,7 +55,7 @@ class ProductManager {
             return;
         }
     
-        const updatedProduct = { ...products[index], title, description, price, thumbnail, code, stock, category };
+        const updatedProduct = { ...products[index], title, description, price, thumbnail, code, stock };
         products[index] = updatedProduct;
     
         await saveJSONToFile(this.path, products);
@@ -97,20 +97,6 @@ const saveJSONToFile = async (path, data) => {
       await fs.promises.writeFile(path, content, 'utf-8');
     } catch (error) {
       throw new Error(`El archivo ${path} no pudo ser escrito.`);
-    }
-}
-
-const ejemploAdd = async () => {
-    try{
-        const products = new ProductManager('../product.json')
-        await products.addProduct('Producto 1', 'Descripción 1', 1, 'imagen1.jpg', 'abc111', 50)
-        await products.addProduct('Producto 2', 'Descripción 2', 1, 'imagen2.jpg', 'abc112', 10)
-        await products.addProduct('Producto 3', 'Descripción 3', 1, 'imagen3.jpg', 'abc113', 30)
-        await products.addProduct('Producto 4', 'Descripción 4', 1, 'imagen4.jpg', 'abc114', 40)
-        await products.addProduct('Producto 5', 'Descripción 5', 1, 'imagen5.jpg', 'abc115', 50)
-        console.log('Producto/s agregado correctamente')
-    }catch{
-        console.log('Error al agregar el producto')
     }
 }
 

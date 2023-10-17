@@ -5,17 +5,17 @@ import { Server } from 'socket.io';
 const serverHttp = http.createServer(app)
 const serverSocket = new Server(serverHttp)
 
-serverSocket.on('connect', (socketClient)=>{
-    console.log(`Se a conectado el cliente ${socketClient.id}`);
 
-    socketClient.on('new-message', (message)=>{
-        console.log(`El cliente ${socketClient.id} saludo desde el frontend: ${message}`);
-    })
-    
-    socketClient.on('disconnect', ()=>{
-        console.log(`El cliente ${socketClient.id} se a desconectado`);
-    })
-})
+serverSocket.of('/realTimeProduct').on('connection', (socketClient) => {
+    console.log(`Se ha conectado el cliente ${socketClient.id}`);
+
+    socketClient.on('disconnect', () => {
+        console.log(`El cliente ${socketClient.id} se ha desconectado`);
+    });
+});
+
+
+export const io = serverSocket;
 
 const PORT = 8080;
 
